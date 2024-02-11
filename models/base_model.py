@@ -2,6 +2,7 @@
 """BaseModel class definition"""
 import json
 import uuid
+from datetime import datetime
 import models
 
 
