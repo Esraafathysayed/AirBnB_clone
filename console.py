@@ -10,7 +10,7 @@ from models.__init__ import storage
 
 class HBNBCommand(cmd.Cmd):
     """
-    HBNBCommand class name
+    HBNBCommand cls na
     """
 
     prompt = '(hbnb) '
