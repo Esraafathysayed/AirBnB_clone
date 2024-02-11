@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-FileStorage class definition
+FileStorage class definition to return a string value
 """
 import json
 from models.base_model import BaseModel
@@ -8,17 +8,17 @@ import os
 
 
 class FileStorage:
-    """FileStorage class for saving instances"""
+    """FileStorage class for saving instances file json and objects"""
 
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
-        """Return all stored data"""
+        """Return all stored data returned the object"""
         return self.__objects
 
     def new(self, obj):
-        """save instance in .__object"""
+        """save instance in .__object string value object"""
         key_for_dic = "{}.{}".format(obj.__class__.__name__, obj.id)
         self.__objects[key_for_dic] = obj
 
