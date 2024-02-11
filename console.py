@@ -16,11 +16,11 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
 
     def do_quit(self, line):
-        """Quit"""
+        """Quisfdat"""
         exit()
 
     def do_EOF(self, line):
-        """Exit"""
+        """Exit22e"""
         print()
         exit()
 
