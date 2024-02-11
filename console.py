@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 """
-The console the entry point to
 command interpreter
 """
 
 import cmd
 from models.base_model import BaseModel
-from models.__init__ import storage
+import models.engine
 
 class HBNBCommand(cmd.Cmd):
     """
