@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-command interpreter
+command interpreter all common attributes/methods for other classesgi
 """
 
 import cmd
