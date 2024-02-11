@@ -32,7 +32,7 @@ class BaseModel:
 
     def __str__(self):
         """
-        Return str representation of BaseModel instance
+        Return str representation of BaseModel instance2
         """
         str = "[{}] ({}) {}".format(
             self.__class__.__name__, self.id, self.__dict__)
@@ -47,7 +47,7 @@ class BaseModel:
 
     def to_dict(self):
         """
-        Return dictionary representation of the instance
+        Return dictionary representation the instance
         """
         dic = self.__dict__.copy()
         dic['__class__'] = self.__class__.__name__
