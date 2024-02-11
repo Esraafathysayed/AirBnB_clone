@@ -19,7 +19,7 @@ class HBNBCommand(cmd.Cmd):
         exit()
 
     def do_EOF(self, line):
-        """Exit22e"""
+        """Ex2e"""
         print()
         exit()
 
