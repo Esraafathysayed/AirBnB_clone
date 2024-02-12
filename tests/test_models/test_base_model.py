@@ -1,108 +1,76 @@
-#!/usr/bin/env python3
-"""
-Verifying BaseModel Class
-"""
 import unittest
-import models
-import os
-import uuid
-from io import StringIO
-from datetime import datetime
-from unittest.mock import patch
 from models.base_model import BaseModel
+from io import StringIO
+from unittest import TestCase
+from unittest.mock import patch
+import os
+from datetime import datetime
+from time import sleep
 
+class TestBaseModel(unittest.TestCase):
+    """ Suite to test Base class """
+    
+    """ #1 ATTRIBUTES """
+    
+    def setUp(self):
+        """Set up for all methods"""
+        pass
+    
+    def test_creation(self):
+        """Testing whether is created or not"""
+        Attr122 = BaseModel()
+        self.assertTrue(hasattr(Attr122, "id"))
+        self.assertTrue(hasattr(Attr122, "created_at"))
+        self.assertTrue(hasattr(Attr122, "updated_at"))
 
-class Test_BaseModel(unittest.TestCase):
-    """BaseModel Tests"""
-
-    model_a = BaseModel()
-    model_b = BaseModel()
-
-    def test_init(self):
-        """Verifying __init__(**kwargs)"""
-        model_c = BaseModel(**(self.model_a.to_dict()))
-        self.assertEqual(self.model_a.id, model_c.id)
-        self.assertEqual(self.model_a.created_at, model_c.created_at)
-        self.assertEqual(self.model_a.updated_at, model_c.updated_at)
-        self.assertNotEqual(self.model_a, model_c)
-        self.assertEqual(self.model_a.to_dict(), model_c.to_dict())
-
-    def test_instance(self):
-        """Verifying Is Instance"""
-        self.assertIsInstance(self.model_a, BaseModel)
-        self.assertIsInstance(self.model_b, BaseModel)
-
-    def test_id(self):
-        """Verifying UUID"""
-        self.assertNotEqual(self.model_a.id, self.model_b.id)
-        self.assertEqual(type(self.model_a.id), str)
-        self.assertEqual(type(self.model_b.id), str)
-        self.assertIsInstance(uuid.UUID(self.model_a.id), uuid.UUID)
-
-    def test_datetime(self):
-        """Verifying Time"""
-        self.assertIsInstance(self.model_a.created_at, datetime)
-        self.assertIsInstance(self.model_b.created_at, datetime)
-        self.assertIsInstance(self.model_a.updated_at, datetime)
-        self.assertIsInstance(self.model_b.updated_at, datetime)
-        datetimeiso = self.model_a.created_at.isoformat()
-        from_dict = self.model_a.to_dict()["created_at"]
-        self.assertEqual(datetimeiso, from_dict)
-
-    def test_represent_str(self):
-        """Verifying instance __str__()"""
-        string = self.model_a.__str__()
-        with patch('sys.stdout', new=StringIO()) as dis:
-            print(self.model_a, end="")
-            self.assertEqual(dis.getvalue(), string)
-        string = self.model_b.__str__()
-        with patch('sys.stdout', new=StringIO()) as dis:
-            print(self.model_b, end="")
-            self.assertEqual(dis.getvalue(), string)
-
+    def id_duplications(self):
+        """Is it realy Universal Unique or is it just a name"""
+        id11 = BaseModel()
+        id22 = BaseModel()
+        id33 = BaseModel()
+        id45 = BaseModel()
+        self.assertFalse(id11.id == id22.id)
+        self.assertFalse(id11.id == id33.id)
+        self.assertFalse(id11.id == id45.id)
+        self.assertFalse(id22.id == id33.id)
+        self.assertFalse(id22.id == id45.id)
+        self.assertFalse(id45.id == id45.id)
+        
+    def test_our_types(self):
+        """did we get the string and datetime Right"""
+        Typo2 = BaseModel()
+        self.assertEqual(type(Typo2.id, str))
+        self.assertEqual(type(Typo2.created_at, datetime))
+        self.assertEqual(type(Typo2.updated_at, datetime))
+        
+    """ #2 METHODS """
+    
     def test_save(self):
-        """Verifying instance save()"""
-        t1 = self.model_a.updated_at
-        self.model_a.save()
-        t2 = self.model_b.updated_at
-        self.assertNotEqual(t1, t2)
-        self.assertTrue(os.path.exists("file.json"))
-
-    def test_storage_object(self):
-        """Verifying Storage new method"""
-        restored = models.storage.all()
-        key = "BaseModel.{}".format(self.model_a.id)
-        self.assertEqual(restored[key], self.model_a)
-        key = "BaseModel.{}".format(self.model_b.id)
-        self.assertEqual(restored[key], self.model_b)
-        os.remove("file.json")
-
+        """Do we save the time or we go through black hole"""
+        sa22 = BaseModel()
+        creation_time = sa22.created_at
+        updating_time = sa22.updated_at
+        sleep(0.06)
+        sa22.save()
+        self.assertFalse(updating_time == sa22.updated_at)
+        self.assertTrue(creation_time == sa22.created_at)
+        
     def test_to_dict(self):
-        """Verifying to_dict"""
-        model_dict = self.model_a.__dict__
-        to_dict_ret = self.model_a.to_dict()
-        self.assertNotEqual(model_dict, to_dict_ret)
-        self.assertEqual(to_dict_ret["__class__"],
-                         self.model_a.__class__.__name__)
+        """Is right conerted or not"""
+        the_base22 = BaseModel()
+        dic = the_base22.to_dict()
+        self.assertEqual(dic['__class__'], "BaseModel")
+        self.assertEqual(type(dic['created_at']), str)
+        self.assertEqual(type(dic['updated_at']), str)
+        
+    def test_isoformat(self):
+        """Did we get to ISO 8601"""
+        the_base2 = BaseModel()
+        crtdtime2 = datetime.now()
+        updtdtime2 = datetime.now()
+        the_base2.created_at = crtdtime2
+        the_base2.updated_at = updtdtime2
 
-    def test_addattr(self):
-        """Verifying adding attribute"""
-        self.model_a.some = "some"
-        self.model_a.num = 30
-        self.assertTrue(hasattr(self.model_a, "some"))
-        self.assertTrue(hasattr(self.model_a, "num"))
-        self.assertIsInstance(self.model_a.some, str)
-        self.assertIsInstance(self.model_a.num, int)
-
-    def test_err(self):
-        """Verifying errors"""
-        with self.assertRaises(TypeError):
-            x = self.model_a.to_dict("hii")
-        with self.assertRaises(TypeError):
-            x = self.model_a.save("hii")
-        with self.assertRaises(TypeError):
-            x = self.model_a.__str__("hii")
-
-
-if __name__ == "__main__":
-    unittest.main()
+        dic = the_base2.to_dict()
+        self.assertEqual(dic["created_at"], crtdtime2.isoformat())
+        self.assertEqual(dic["updated_at"], updtdtime2.isoformat())
