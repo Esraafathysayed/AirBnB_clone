@@ -4,10 +4,8 @@ import json
 import uuid
 from datetime import datetime
 import models
-"""BaseModel class From datatime import datetime import models"""
 
 class BaseModel:
-
     """BaseModel class public instance here"""
 
     def __init__(self, *args, **kwargs):
