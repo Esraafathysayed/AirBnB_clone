@@ -35,8 +35,8 @@ class Test_BaseModel(unittest.TestCase):
     def test_id(self):
         """Verifying UUID"""
         self.assertNotEqual(self.model_a.id, self.model_b.id)
-        self.assertEqual(type(self.model_b.id), str)
         self.assertEqual(type(self.model_a.id), str)
+        self.assertEqual(type(self.model_b.id), str)
         self.assertIsInstance(uuid.UUID(self.model_a.id), uuid.UUID)
 
     def test_datetime(self):
