@@ -36,8 +36,8 @@ class FileStorage:
         if os.path.exists(self.__file_path):
             with open(self.__file_path, "r") as f:
                 restor = json.load(f)
-                for k, v in restor.items():
-                    if '__class__' in v:
-                        cls = v['__class__']
-                        obj = cls(**v)
-                        self.__objects[k] = obj
+            for k, v in restor.items():
+                if '__class__' in v:
+                    cls = v['__class__']
+                    obj = cls(**v)
+                    self.__objects[k] = obj
