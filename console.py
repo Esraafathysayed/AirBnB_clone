@@ -112,7 +112,7 @@ class HBNBCommand(cmd.Cmd):
             for value in storage.all().values():
                 to_show.append(str(value))
         elif args_all[0]:
-            if args_all[0] not in self.valid_classes.keys():
+            if args_all[0] not in self.Base_clas.keys():
                 print("** class doesn't exist **")
                 return
 
