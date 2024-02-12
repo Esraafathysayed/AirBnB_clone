@@ -32,7 +32,7 @@ class BaseModel:
 
     def __str__(self):
         """
-        Return str of BaseModel instansssssssce2
+        Return str of BModel instansssssssce2
         """
         str = "[{}] ({}) {}".format(
             self.__class__.__name__, self.id, self.__dict__)
