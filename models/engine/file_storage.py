@@ -2,6 +2,7 @@
 """ FileStorage """
 
 import json
+from models.user import User
 from models.base_model import BaseModel
 import os
 
@@ -32,7 +33,7 @@ class FileStorage:
 
     def reload(self):
         """reload json file to the endpoint"""
-        classes = {"BaseModel": BaseModel}
+        classes = {"User": User, "BaseModel": BaseModel}
 
         if os.path.exists(self.__file_path):
             with open(self.__file_path, "r") as f:
