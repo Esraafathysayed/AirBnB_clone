@@ -6,7 +6,6 @@ import json
 from models.base_model import BaseModel
 import os
 
-
 class FileStorage:
     """Class FileStorage"""
 
@@ -28,7 +27,6 @@ class FileStorage:
             data = {}
             for k, v in self.__objects.items():
                 data[k] = v.to_dict()
-            if len(data) != 0:
                 json.dump(data, f, indent=4)
 
     def reload(self):
