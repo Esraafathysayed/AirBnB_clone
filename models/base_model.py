@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """BaseModel class definition"""
+
 import json
 import uuid
 from datetime import datetime
 import models
+
 
 class BaseModel:
     """BaseModel class public instance here"""

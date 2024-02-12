@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
-"""
-FileStorage
-"""
+""" FileStorage """
+
 import json
 from models.base_model import BaseModel
 import os
