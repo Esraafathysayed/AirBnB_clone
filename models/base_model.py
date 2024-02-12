@@ -32,7 +32,7 @@ class BaseModel:
 
     def __str__(self):
         """
-        Return str representation of BaseModel instance2
+        Return str of BaseModel instance2
         """
         str = "[{}] ({}) {}".format(
             self.__class__.__name__, self.id, self.__dict__)
