@@ -22,6 +22,10 @@ class HBNBCommand(cmd.Cmd):
         """Ex2e"""
         print()
         exit()
+        
+    def emptyline(self):
+        """empty line."""
+        pass
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
