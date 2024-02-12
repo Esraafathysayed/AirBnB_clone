@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-The console the entry point to
-command interpreter
+The console the entry point tsssdso
+command intsserpreter
 """
 
 import cmd
@@ -33,7 +33,7 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, line):
-        """Creates a new instance of BaseModel"""
+        """Creates a new instance of Bsodel"""
         lines = line.split(' ')
 
         if not lines or not lines[0]:
