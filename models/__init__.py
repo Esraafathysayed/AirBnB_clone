@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""__inittttttttttt"""
+"""__init__ file testtttttttttttttttt"""
 
 
 from models.engine.file_storage import FileStorage
