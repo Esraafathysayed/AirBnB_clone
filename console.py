@@ -130,7 +130,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
 
-        if args_update[0] not in self.valid_classes.keys():
+        if args_update[0] not in self.Base_clas.keys():
             print("** class doesn't exist **")
             return
 
